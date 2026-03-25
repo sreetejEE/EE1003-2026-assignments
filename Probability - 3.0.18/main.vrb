@@ -1,0 +1,21 @@
+\frametitle{Python Code}
+    \begin{lstlisting}[language=Python]
+S_n = np.cumsum(X)
+n = np.arange(1, n_max + 1)
+Sn_by_n = S_n / n
+
+# Using scipy to get mean
+true_mean = chi2.mean(df)
+
+#Plotting
+plt.figure()
+plt.plot(n, Sn_by_n, label="S_n / n")
+plt.axhline(y=true_mean, linestyle='--', label="Mean")
+plt.title("S_n / n vs n")
+plt.xlabel("n")
+plt.ylabel("S_n / n")
+plt.legend()
+plt.grid(True)
+
+plt.show()
+     \end{lstlisting}

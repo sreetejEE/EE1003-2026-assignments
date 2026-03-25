@@ -1,0 +1,287 @@
+
+
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{mathtools}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+\usepackage[T1]{fontenc}
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+  breakable=true,
+  listing engine=minted,
+  listing only,
+  minted language=#2,
+  minted style=default,
+  minted options={%
+    linenos,
+    gobble=0,
+    breaklines=true,
+    breakafter=,,
+    fontsize=\small,
+    numbersep=8pt,
+    #1},
+  boxsep=0pt,
+  left skip=0pt,
+  right skip=0pt,
+  left=25pt,
+  right=0pt,
+  top=3pt,
+  bottom=3pt,
+  arc=5pt,
+  leftrule=0pt,
+  rightrule=0pt,
+  bottomrule=2pt,
+  toprule=2pt,
+  colback=bg,
+  colframe=orange!70,
+  enhanced,
+  overlay={%
+    \begin{tcbclipinterior}
+    \fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+    \end{tcbclipinterior}},
+  #3,
+}
+
+% Code style
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{orange},
+    commentstyle=\color{green!60!black},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+% Title info
+\title %optional
+{Probability - 3.0.18}
+\date{March 25, 2025}
+\author % (optional)
+{EE25BTECH11018 - Darisy Sreetej}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Question}
+Let $X_1, X_2$, $\cdots$ be a sequence of independent and identically distributed chi-square
+random variables, each having 4 degrees of freedom. Define
+\begin{align*}
+    S_n = \sum_{i=1}^{n} X_i
+\end{align*}
+$
+\text{If } \frac{S_n}{n} \to \mu \text{ as } n \to \infty,\ \text{then } \mu =
+$
+\quad
+ \begin{enumerate}
+
+\item   $8$ 
+\item   $16$
+ \item $24$
+\item  $32$
+ \end{enumerate}
+ \hfill(MA 2007)
+\end{frame}
+\begin{frame}{Solution}
+A random variable  \textbf{X} is said to follow a Chi-square distribution with n  degrees of freedom if :
+\begin{align}
+f(x) &= \frac{1}{2^{n/2}\,\Gamma(n/2)} \, x^{\frac{n}{2} - 1} e^{-x/2} , \quad x > 0 \\
+f(x) &= 0, \quad \text{otherwise}
+\end{align}
+
+\begin{align}
+\mathbf{X} \sim \chi^2(n)
+\end{align}
+(This is special case of Gamma Distribution)
+\end{frame}
+\begin{frame}{Solution}
+\begin{align}
+\text{Given: } X \sim \chi^2(n), \quad 
+f(x) = \frac{1}{2^{n/2}\,\Gamma(n/2)} x^{\frac{n}{2}-1} e^{-x/2}, \; x>0
+\end{align}
+
+\begin{align}
+E[X] &= \int_{0}^{\infty} x f(x)\,dx \\
+&= \int_{0}^{\infty} x \cdot \frac{1}{2^{n/2}\,\Gamma(n/2)} x^{\frac{n}{2}-1} e^{-x/2}\,dx \\
+&= \frac{1}{2^{n/2}\,\Gamma(n/2)} \int_{0}^{\infty} x^{\frac{n}{2}} e^{-x/2}\,dx
+\end{align}
+
+\begin{align}
+\text{Let } t = \frac{x}{2} \;\Rightarrow\; x = 2t,\; dx = 2\,dt
+\end{align}
+
+\begin{align}
+E[X] &= \frac{1}{2^{n/2}\,\Gamma(n/2)} 
+\int_{0}^{\infty} (2t)^{\frac{n}{2}} e^{-t} \cdot 2\,dt 
+\end{align}
+\end{frame}
+
+
+\begin{frame}{Solution}
+\begin{align}
+&= \frac{1}{2^{n/2}\,\Gamma(n/2)} 
+\int_{0}^{\infty} 2^{n/2} t^{\frac{n}{2}} e^{-t} \cdot 2\,dt \\
+&= \frac{2^{n/2} \cdot 2}{2^{n/2}\,\Gamma(n/2)} 
+\int_{0}^{\infty} t^{\frac{n}{2}} e^{-t}\,dt \\
+&= \frac{2}{\Gamma(n/2)} 
+\int_{0}^{\infty} t^{\frac{n}{2}} e^{-t}\,dt
+\end{align}
+\begin{align}
+\text{Using Gamma function: } 
+\int_{0}^{\infty} t^{m-1} e^{-t} dt = \Gamma(m)
+\end{align}
+\begin{align}
+\Rightarrow \int_{0}^{\infty} t^{\frac{n}{2}} e^{-t} dt 
+= \Gamma\!\left(\frac{n}{2} + 1\right)
+\end{align}
+\end{frame}
+\begin{frame}{Solution}
+
+
+\begin{align}
+E[X] &= \frac{2}{\Gamma(n/2)} \cdot \Gamma\!\left(\frac{n}{2} + 1\right)
+\end{align}
+
+\begin{align}
+\text{Using } \Gamma(m+1) = m\,\Gamma(m): \\
+\quad \Gamma\!\left(\frac{n}{2} + 1\right) 
+= \frac{n}{2}\,\Gamma\!\left(\frac{n}{2}\right)
+\end{align}
+
+\begin{align}
+E[X] &= \frac{2}{\Gamma(n/2)} \cdot \frac{n}{2}\,\Gamma\!\left(\frac{n}{2}\right) \\
+&= n
+\end{align}
+
+\begin{align}
+\boxed{E[X] = n}
+\end{align}
+\end{frame}
+
+\begin{frame}{Solution}
+According to our question , 
+We have \\
+\begin{align}
+X_1, X_2, \ldots \sim \chi^2(4) \quad \text{(independent and identically distributed)}
+\end{align}
+Also from (19) , $E[X_i] = 4$
+ Using \textbf{Law of Large Numbers(LLN)} , which states that the sample mean converges to the population mean as $n \to \infty$
+
+ \begin{align}
+\frac{1}{n}\sum_{i=1}^n X_i \xrightarrow{} {E}[X_i] \quad \text{as } n \to \infty
+ \end{align}
+\end{frame}
+
+
+
+\begin{frame}{Solution}
+Thus ,
+\begin{align}
+  \frac{S_n}{n} \xrightarrow{} {E}[X_i] \quad \text{as } n \to \infty\\
+ \Rightarrow \frac{S_n}{n} \xrightarrow{} 4 \quad \text{as } n \to \infty
+\end{align}
+Therefore , $\mu = 4 $ (none of the options)
+\end{frame}
+
+
+
+
+
+
+\begin{frame}[fragile]
+\frametitle{Python Code}
+    \begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import chi2
+
+# Parameters
+n_max = 5000
+df = 4  
+
+# Generate samples
+X = np.random.chisquare(df, n_max)
+
+#Plotting
+plt.figure()
+plt.hist(X, bins=50, density=True)
+plt.title("X ~ Chi-square(4)")
+plt.xlabel("x")
+plt.ylabel("Density")
+plt.grid(True)
+
+
+
+
+
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{Python Code}
+    \begin{lstlisting}[language=Python]
+S_n = np.cumsum(X)
+n = np.arange(1, n_max + 1)
+Sn_by_n = S_n / n
+
+# Using scipy to get mean
+true_mean = chi2.mean(df)
+
+#Plotting
+plt.figure()
+plt.plot(n, Sn_by_n, label="S_n / n")
+plt.axhline(y=true_mean, linestyle='--', label="Mean")
+plt.title("S_n / n vs n")
+plt.xlabel("n")
+plt.ylabel("S_n / n")
+plt.legend()
+plt.grid(True)
+
+plt.show()
+     \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Plot}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.85\linewidth]{plot1.png}
+        \caption{PDF vs x}
+        \label{fig:placeholder}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Plot}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.85\linewidth]{plot2.png}
+        \caption{PDF vs x}
+        \label{fig:placeholder}
+    \end{figure}
+\end{frame}
+\end{document}
+
+
+
+
+
+ 
