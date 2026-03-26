@@ -1,15 +1,12 @@
-\frametitle{Python code}
+\frametitle{Python code(for plotting x[n] obtained from difference equation)}
     \begin{lstlisting}[language=Python]
-ax2.axhline(0, linewidth=0.5)
-ax2.axvline(0, linewidth=0.5)
-ax2.set_title("Pole-Zero Plot")
-ax2.set_xlabel("Real")
-ax2.set_ylabel("Imaginary")
-ax2.grid(True)
-ax2.set_aspect('equal')
-ax2.set_xlim(-3, 3)
-ax2.set_ylim(-3, 3)
-
+    plt.setp(stemlines, linewidth=1.5)
+plt.title(" x[n] vs n (through difference equation", fontsize=13, fontweight='bold')
+plt.xlabel("n", fontsize=11)
+plt.ylabel("x[n]", fontsize=11)
+plt.grid(True, alpha=0.3)
+plt.xlim(-10, 10)
+plt.ylim(min(x) - 0.1, 0.1)
 plt.tight_layout()
 plt.show()
-    \end{lstlisting}
+  \end{lstlisting}
