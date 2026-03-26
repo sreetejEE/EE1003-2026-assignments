@@ -1,0 +1,15 @@
+\frametitle{Python code}
+    \begin{lstlisting}[language=Python]
+ax2.axhline(0, linewidth=0.5)
+ax2.axvline(0, linewidth=0.5)
+ax2.set_title("Pole-Zero Plot")
+ax2.set_xlabel("Real")
+ax2.set_ylabel("Imaginary")
+ax2.grid(True)
+ax2.set_aspect('equal')
+ax2.set_xlim(-3, 3)
+ax2.set_ylim(-3, 3)
+
+plt.tight_layout()
+plt.show()
+    \end{lstlisting}
