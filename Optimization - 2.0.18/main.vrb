@@ -1,0 +1,15 @@
+\frametitle{Python Code}
+    \begin{lstlisting}[language=Python]
+plt.axhline(y=t_m, linestyle='--', label='Machine Time (M)')
+plt.plot(n_values, idle_time_mismatch, marker='s', label='Idle Time Mismatch')
+
+plt.plot(optimal_n, minimized_idle_time, marker='o', markersize=10, label=f'Optimal n={optimal_n}')
+
+plt.xlabel('Number of Machines (n)')
+plt.ylabel('Time (min)')
+plt.title('Optimal Machine Assignment')
+plt.xticks(n_values)
+plt.grid(True)
+plt.legend()
+plt.show()
+\end{lstlisting}
